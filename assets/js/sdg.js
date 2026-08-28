@@ -2570,7 +2570,7 @@ function makeDataset(years, rows, combination, labelFallback, color, background,
        prepared = prepareDataForDataset(years, rows, allObservationAttributes),
        data = prepared.data,
        obsAttributes = prepared.observationAttributes;
-  console.log("fill, fillAbove, fillBelow:", fill, fillAbove, fillBelow, typeof fill);
+
   return Object.assign(dataset, {
 
     label: getCombinationDescription(combination, labelFallback),
@@ -2745,6 +2745,7 @@ function makeHeadlineDataset(years, rows, label, fill, fillAbove, fillBelow, sho
    */
   function getGraphStepsize(graphStepsize, selectedUnit, selectedSeries) {
     return getMatchByUnitSeries(graphStepsize, selectedUnit, selectedSeries);
+
 }
 
   /**
@@ -2977,10 +2978,8 @@ function getAllObservationAttributes(rows) {
         footnoteNumber: footnoteNumber,
       }
       footnoteNumber += 1;
-      console.log("obsAttributeHash[hashKey]: ",obsAttributeHash[hashKey]);
     });
   });
-  console.log("obsAttributeHash: ",obsAttributeHash);
   return obsAttributeHash;
 }
 
@@ -3065,9 +3064,7 @@ function getAllObservationAttributes(rows) {
 
   // general members:
   var that = this;
-  console.log("options.data: ",options.data);
   this.data = helpers.inputData(options.data);
-  console.log("this.data: ", this.data);
   this.edgesData = helpers.inputEdges(options.edgesData);
   this.hasHeadline = true;
   this.country = options.country;
@@ -3151,7 +3148,6 @@ function getAllObservationAttributes(rows) {
 
   // Before continuing, we may need to filter by Series, so set up all the Series stuff.
   this.allData = helpers.prepareData(this.data, { indicatorId: this.indicatorId });
-  console.log("this.allData_2: ",this.allData);
   this.allColumns = helpers.getColumnsFromData(this.allData);
   this.hasSerieses = helpers.dataHasSerieses(this.allColumns);
   this.serieses = this.hasSerieses ? helpers.getUniqueValuesByProperty(helpers.SERIES_COLUMN, this.allData) : [];
@@ -3170,7 +3166,6 @@ function getAllObservationAttributes(rows) {
   }
 
   // calculate some initial values:
-  console.log("this.allData: ",this.allData);
   this.allObservationAttributes = helpers.getAllObservationAttributes(this.allData);
   this.hasGeoData = helpers.dataHasGeoCodes(this.allColumns);
   this.hasUnits = helpers.dataHasUnits(this.allColumns);
@@ -3858,7 +3853,7 @@ function getHeadlineColor(contrast, goalNumber) {
   var headlineColors = ['#AA2B5F', '#FCB513', '#9E5EA6', '#71BE43'];
   var headlineColor = headlineColors[goalNumber-1];
   var htmlString = '' + headlineColor + '';
-  console.log("goalNumber: ", htmlString);
+
     return isHighContrast(contrast) ? '#FFDD00' : htmlString;
 }
 
@@ -4554,7 +4549,7 @@ opensdg.chartTypes.base = function(info) {
         borderWidth: 0,
     };
     if (info.stackedDisaggregation) {
-        console.log('Stacked', info.stackedDisaggregation, typeof info.stackedDisaggregation);
+
         overrides.options = {
             scales: {
                 x: { stacked: true },
@@ -5100,6 +5095,7 @@ function alterDataDisplay(value, info, context, additionalInfo) {
       if (precision < 0) {
         precision = 0
       }
+      console.log("STEP", VIEW._graphStepsize, precision);
     }
     else {
       var precision = VIEW._precision
