@@ -171,13 +171,14 @@ opensdg.autotrack = function(preset, category, action, label) {
           newSubtitle = null;
       if (this.modelHelpers.GRAPH_TITLE_FROM_SERIES) {
         newTitle = currentSeries;
+
       }
       else {
         var currentTitle = $('#map-heading').text();
-        var currentSubtitle = $('#map-subheading').text();
         newTitle = this.modelHelpers.getChartTitle(currentTitle, this.chartTitles, currentUnit, currentSeries);
-        newSubtitle = this.modelHelpers.getChartTitle(currentSubtitle, this.chartSubtitles, currentUnit, currentSeries);
       }
+      var currentSubtitle = $('#map-subheading').text();
+      newSubtitle = this.modelHelpers.getChartTitle(currentSubtitle, this.chartSubtitles, currentUnit, currentSeries);
       if (newTitle) {
         if (this.proxy === 'proxy' || this.proxySerieses.includes(currentSeries)) {
             newTitle += ' ' + this.viewHelpers.PROXY_PILL;
@@ -2570,7 +2571,6 @@ function makeDataset(years, rows, combination, labelFallback, color, background,
        prepared = prepareDataForDataset(years, rows, allObservationAttributes),
        data = prepared.data,
        obsAttributes = prepared.observationAttributes;
-
   return Object.assign(dataset, {
 
     label: getCombinationDescription(combination, labelFallback),
@@ -2745,7 +2745,6 @@ function makeHeadlineDataset(years, rows, label, fill, fillAbove, fillBelow, sho
    */
   function getGraphStepsize(graphStepsize, selectedUnit, selectedSeries) {
     return getMatchByUnitSeries(graphStepsize, selectedUnit, selectedSeries);
-
 }
 
   /**
@@ -3749,7 +3748,7 @@ function updateChartTitle(chartTitle, isProxy) {
  */
 function updateChartSubtitle(chartSubtitle) {
     if (typeof chartSubtitle !== 'undefined') {
-        $('.chart-subtitle').text(chartSubtitle);
+        $('.chart-subtitle').html(chartSubtitle);
     }
 }
 
@@ -3850,10 +3849,9 @@ function updateIndicatorDataSeriesStatus(series) {
     //return isHighContrast(contrast) ? '#FFDD00' : '#b8b8b8';
 function getHeadlineColor(contrast, goalNumber) {
 
-  var headlineColors = ['#AA2B5F', '#FCB513', '#9E5EA6', '#71BE43'];
+  var headlineColors = ["#e5243b", "#dda63a", "#4c9f38", "#c5192d", "#ff3a21", "#26bde2", "#fcc30b", "#a21942", "#fd6925", "#dd1367", "#fd9d24", "#bf8b2e", "#3f7e44", "#0a97d9", "#56c02b", "#00689d", "#19486a"];
   var headlineColor = headlineColors[goalNumber-1];
   var htmlString = '' + headlineColor + '';
-
     return isHighContrast(contrast) ? '#FFDD00' : htmlString;
 }
 
@@ -5004,27 +5002,6 @@ function setDataTableWidth(table) {
 
     table.removeAttr('style width');
     table.css('width', '100%');
-    // var totalWidth = 0;
-    // var column = 0;
-    // table.find('thead th').each(function () {
-    //     column += 1;
-    //     if ($(this).data('width')) {
-    //         totalWidth += $(this).data('width');
-    //         console.log('a) Column ', column, ': ',  $(this).data('width'), ', Total: ' + totalWidth);
-    //     } else {
-    //         totalWidth += $(this).width();
-    //         console.log('b) Column ', column + ': ',  $(this).width(), ', Total: ' + totalWidth);
-    //     }
-    // });
-
-    // ascertain whether the table should be width 100% or explicit width:
-    // var containerWidth = table.closest('.dataTables_wrapper').width();
-    // console.log('Table: ', totalWidth, 'Container: ', containerWidth);
-    // if (totalWidth > containerWidth && containerWidth > 0) {
-    //     table.css('width', totalWidth + 'px');
-    // } else {
-    //     table.css('width', '100%');
-    // }
 }
 
 /**
@@ -5095,7 +5072,6 @@ function alterDataDisplay(value, info, context, additionalInfo) {
       if (precision < 0) {
         precision = 0
       }
-      console.log("STEP", VIEW._graphStepsize, precision);
     }
     else {
       var precision = VIEW._precision
