@@ -2740,17 +2740,70 @@ body.contrast-high.layout-search form input, body.contrast-high.layout-search fo
   --magenta-light: #f2dde5;
   --text: #2c2c2c;
   --text-other: #ffffff;
-  --radius-pill: 999px; }
+  --radius-pill: 999px;
+  --font-ui: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
 * {
   box-sizing: border-box; }
+
+.container {
+  padding-left: 0px;
+  padding-right: 0px; }
 
 body {
   margin: 0;
   padding: 40px 20px;
   background: #ffffff;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-ui);
   color: var(--text); }
+
+/* Einheitliche Schrift für Themen-Button, Header und Navigation-Buttons
+   (überschreibt evtl. abweichende Überschriften-/Button-Fonts des Themes) */
+.goal-banner,
+.goal-banner h1,
+.goal-banner h2,
+.goal-banner p,
+.goal-banner span,
+.item-btn,
+.item-btn *:not(.fa) {
+  font-family: var(--font-ui); }
+
+/* Themen-Button oberhalb des Indikator-Headers:
+   gleiche Breite wie .goal-banner, Optik wie .item-btn-nav */
+.theme-link-wrapper {
+  max-width: 1320px;
+  margin: 0 auto 30px;
+  /* gleicher Abstand wie .columns-navigation margin-top */ }
+
+a.item-btn-theme,
+a.item-btn-theme:hover,
+a.item-btn-theme:focus,
+a.item-btn-theme:visited {
+  color: var(--text);
+  text-decoration: none; }
+
+a.item-btn-theme {
+  justify-content: center;
+  text-align: center; }
+
+.item-label-theme {
+  font-size: 1.8rem;
+  font-weight: 700; }
+
+/* Header-Element: Textblock vertikal zentrieren */
+.goal-banner .row {
+  align-items: center; }
+
+.goal-banner .indicator-head-target {
+  margin-top: 0;
+  margin-bottom: 0;
+  /* Standard-Abstand unter h1 würde die Mitte nach oben verschieben */ }
+
+.frontpage-goals-grid-description-click {
+  border-top: 2px solid #ccc; }
+
+.frontpage-goals-grid {
+  border-top: 0px; }
 
 /* Startseite: 2, 3, 4 in einer Reihe, 1 über die volle Breite darunter */
 .themes-grid {
@@ -2792,15 +2845,38 @@ a.column-header:hover {
   margin-bottom: 16px; }
 
 .theme-banner {
-  font-size: 1.6rem;
   min-height: 110px;
   margin: 0 0 28px;
   text-align: center; }
 
+/* Schrift exakt wie im Themen-Button (.item-label-theme).
+   #main-content erhöht die Spezifität, damit Heading-Regeln des Themes
+   (z. B. "#main-content h1") nicht gewinnen. */
+#main-content h1.theme-banner {
+  font-family: var(--font-ui);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: normal;
+  /* .column-header setzt 0.03em */ }
+
+/* Banner-Text in der helleren Goal-Farbe */
+.theme-banner.header-magenta {
+  color: var(--magenta-light); }
+
+.theme-banner.header-orange {
+  color: var(--orange-light); }
+
+.theme-banner.header-purple {
+  color: var(--purple-light); }
+
+.theme-banner.header-green {
+  color: var(--green-light); }
+
 .theme-text {
   max-width: 1400px;
-  margin: 0 auto 36px;
-  font-size: 1.1rem;
+  margin: 30px;
+  font-size: 16px;
   line-height: 1.5;
   hyphens: auto; }
 
@@ -2823,7 +2899,7 @@ a.column-header:hover {
   margin: 0; }
 
 .columns-navigation {
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 50px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2989,6 +3065,13 @@ body.contrast-high .goal-banner {
 .goal-1.navigation-btn:hover {
   background-color: #812148; }
 
+/* Themen-Button: Text in der Hintergrundfarbe des Header-Elements */
+.theme-link-goal-1 a.item-btn-theme,
+.theme-link-goal-1 a.item-btn-theme:hover,
+.theme-link-goal-1 a.item-btn-theme:focus,
+.theme-link-goal-1 a.item-btn-theme:visited {
+  color: #AA2B5F; }
+
 .goal-2.goal-banner {
   background-color: #FCB513; }
 .goal-2.navigation-btn {
@@ -3002,6 +3085,13 @@ body.contrast-high .goal-banner {
   padding-bottom: 6px; }
 .goal-2.navigation-btn:hover {
   background-color: #d99803; }
+
+/* Themen-Button: Text in der Hintergrundfarbe des Header-Elements */
+.theme-link-goal-2 a.item-btn-theme,
+.theme-link-goal-2 a.item-btn-theme:hover,
+.theme-link-goal-2 a.item-btn-theme:focus,
+.theme-link-goal-2 a.item-btn-theme:visited {
+  color: #FCB513; }
 
 .goal-3.goal-banner {
   background-color: #9E5EA6; }
@@ -3017,6 +3107,13 @@ body.contrast-high .goal-banner {
 .goal-3.navigation-btn:hover {
   background-color: #804a87; }
 
+/* Themen-Button: Text in der Hintergrundfarbe des Header-Elements */
+.theme-link-goal-3 a.item-btn-theme,
+.theme-link-goal-3 a.item-btn-theme:hover,
+.theme-link-goal-3 a.item-btn-theme:focus,
+.theme-link-goal-3 a.item-btn-theme:visited {
+  color: #9E5EA6; }
+
 .goal-4.goal-banner {
   background-color: #71BE43; }
 .goal-4.navigation-btn {
@@ -3031,25 +3128,38 @@ body.contrast-high .goal-banner {
 .goal-4.navigation-btn:hover {
   background-color: #5a9935; }
 
+/* Themen-Button: Text in der Hintergrundfarbe des Header-Elements */
+.theme-link-goal-4 a.item-btn-theme,
+.theme-link-goal-4 a.item-btn-theme:hover,
+.theme-link-goal-4 a.item-btn-theme:focus,
+.theme-link-goal-4 a.item-btn-theme:visited {
+  color: #71BE43; }
+
+body.contrast-high .theme-link-wrapper a.item-btn-theme,
+body.contrast-high .theme-link-wrapper a.item-btn-theme:hover,
+body.contrast-high .theme-link-wrapper a.item-btn-theme:focus,
+body.contrast-high .theme-link-wrapper a.item-btn-theme:visited {
+  color: #ffffff; }
+
 .goal-banner {
   border-radius: var(--radius-pill);
   padding-left: 80px;
   padding-right: 50px;
   max-width: 1320px;
   margin: auto; }
-  .goal-banner h1, .goal-banner p {
+  .goal-banner h1, .goal-banner h2, .goal-banner p {
     color: white; }
     @media only screen and (max-width: 600px) {
-      .goal-banner h1, .goal-banner p {
+      .goal-banner h1, .goal-banner h2, .goal-banner p {
         font-size: 4vw; } }
     @media only screen and (max-width: 500px) {
-      .goal-banner h1, .goal-banner p {
+      .goal-banner h1, .goal-banner h2, .goal-banner p {
         font-size: 5vw; } }
     @media only screen and (max-width: 400px) {
-      .goal-banner h1, .goal-banner p {
+      .goal-banner h1, .goal-banner h2, .goal-banner p {
         font-size: 6vw; } }
     @media only screen and (max-width: 300px) {
-      .goal-banner h1, .goal-banner p {
+      .goal-banner h1, .goal-banner h2, .goal-banner p {
         font-size: 7vw; } }
 
 /*#2.1*/
@@ -3248,6 +3358,10 @@ body {
 
 h3.h3bold {
   font-weight: bold; }
+
+h4.h4bold {
+  font-weight: bold;
+  margin-top: .5rem; }
 
 .indicator-sidebar {
   hyphens: auto; }
